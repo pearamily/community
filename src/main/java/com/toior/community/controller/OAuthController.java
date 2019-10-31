@@ -32,6 +32,15 @@ public class OAuthController {
     @Autowired
     private UserMapper userMapper;
 
+    
+    /**
+     * @Author liuligong
+     * @Description TODO 
+     * @Date 22:35 2019-10-30
+     * @Param [code, state, response]
+     * @Throwable        
+     * @Return java.lang.String
+    **/
     @GetMapping("/callback")
     public String callBack(@RequestParam(name = "code") String code, @RequestParam(name = "state") String state,  HttpServletResponse response) {
 
@@ -54,6 +63,7 @@ public class OAuthController {
             user.setAccountId(String.valueOf(githubUser.getId()));
             user.setGmtCreate(System.currentTimeMillis());
             user.setGmtModified(user.getGmtCreate());
+            user.setAvatarUrl(githubUser.getAvatarUrl());
             userMapper.insert(user);
             response.addCookie(new Cookie("token",token));
             return "redirect:/";
