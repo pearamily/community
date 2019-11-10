@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.theme.ThemeChangeInterceptor;
@@ -15,7 +16,7 @@ import org.springframework.web.servlet.theme.ThemeChangeInterceptor;
  * @Version 1.0
  **/
 @Configuration
-@EnableWebMvc
+//@EnableWebMvc
 public class WebConfig implements WebMvcConfigurer {
 
     @Autowired
@@ -26,5 +27,11 @@ public class WebConfig implements WebMvcConfigurer {
 
         //this register will register some interceptor to  our spring app
         registry.addInterceptor(sessionInterceptor).addPathPatterns("/**").excludePathPatterns("/admin/**");
+    }
+
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+
     }
 }

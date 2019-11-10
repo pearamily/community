@@ -8,6 +8,7 @@ import com.toior.community.model.Question;
 import com.toior.community.model.User;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -112,5 +113,13 @@ public class QuestionService {
 
 
         return paginationDto;
+    }
+
+
+    public QuestionDto getById(Integer id) {
+        Question question = questionMapper.getById(id);
+        QuestionDto questionDto = new QuestionDto();
+        BeanUtils.copyProperties(question, questionDto);
+        return questionDto;
     }
 }
